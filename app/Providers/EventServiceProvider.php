@@ -5,6 +5,7 @@ namespace App\Providers;
 use App\Listeners\ConfigureTenantConnection;
 use App\Listeners\ConfigureTenantDatabase;
 use App\Listeners\RegisterMigrations;
+use App\Listeners\ResolveConnections;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Auth\Listeners\SendEmailVerificationNotification;
 use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;
@@ -29,6 +30,9 @@ class EventServiceProvider extends ServiceProvider
         ],
         ConnectionsEvents\Drivers\Configuring::class => [
             ConfigureTenantConnection::class,
+        ],
+        ConnectionsEvents\Resolving::class => [
+            ResolveConnections::class,
         ],
         MigrationEvents\ConfigureMigrations::class => [
             RegisterMigrations::class,
